@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package transport_catalog_serialize;
+
+import "graph.proto";
+
+message RoutingSettings {
+    uint32 bus_wait_time = 1;
+    uint32 bus_velocity = 2;
+}
+
+message RouteInternalData {
+    bool has_value = 1;
+    double weight = 2;
+    int32 prev_edge = 3;
+}
+
+message ArrayRouteInternalData {
+    repeated RouteInternalData data = 1;
+}
+
+message RoutesData {
+    repeated ArrayRouteInternalData data = 1;
+}
+
+message Router {
+    RoutingSettings settings = 1;
+    RoutesData data = 2;
+    Graph graph = 3;
+}
+

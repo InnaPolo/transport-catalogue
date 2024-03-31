@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+import "map_renderer.proto";
+import "transport_router.proto";
+
+package transport_catalog_serialize;
+
+message Distance {
+    uint32 index_from = 1;
+    uint32 index_to = 2;
+    uint32 distance = 3;
+}
+message DistanceList {
+    repeated Distance distance = 1;
+}
+
+message Stop {
+    string name = 1;
+    double latitude = 2;
+    double longitude = 3;
+}
+
+message StopList {
+    repeated Stop stop = 1;
+}
+
+message Bus {
+    string name = 1;
+    repeated uint32 stop = 2;
+    bool route_type = 3;
+}
+
+message BusList {
+    repeated Bus bus = 1;
+}
+
+message Catalog {
+    BusList bus_list = 1;
+    StopList stop_list = 2;
+    DistanceList distance_list = 3;
+}
+
+message AllData {
+    Catalog catalog = 1;
+    RenderSettings render_settings = 2;
+    Router router_data = 3;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package transport_catalog_serialize;
+
+message Edge {
+    uint32 from = 1;
+    uint32 to = 2;
+    double weight = 3;
+}
+
+message EdgeInfo {
+    uint32 stop = 1;
+    uint32 bus = 2;
+    uint32 count = 3;
+}
+
+message Graph {
+    repeated Edge edges = 1;
+    map<uint32, EdgeInfo> info = 2;
+}
